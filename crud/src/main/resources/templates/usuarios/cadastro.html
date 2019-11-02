@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<head th:replace="header/head.html :: head">
+<meta charset="UTF-8" />
+</head>
+
+<body>
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+
+			<div class="fadeIn first ">
+				<h3 class="titulo">Cadastro de Usuário</h3>
+			</div>
+			<form name='novousuario' th:action="@{/usuarios/salvar}" method="POST">
+				<input type="text" class="fadeIn second" autofocus required name="nome" placeholder="Nome do Usuário">
+				<input type="text" class="fadeIn second" required name="cpf" placeholder="CPF">
+				<input type="text" class="fadeIn second"  required name="telefone" placeholder="Telefone">
+					 <input type="text" class="fadeIn second" required name="login" placeholder="Login"> 
+					<input type="password" class="fadeIn third" name="senha" required placeholder="Senha">
+				<input type="submit" class="fadeIn fourth" value="Salvar">
+				 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
+		</div>
+	</div>
+
+
+	<script th:src="@{scripts/header.js}"></script>
+</body>
+</html>

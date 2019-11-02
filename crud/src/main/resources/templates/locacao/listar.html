@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="header/head.html :: head"><meta charset="UTF-8"/></head>
+<body>
+	<div th:replace="header/navbar.html :: div"></div>
+	<div class="main-panel">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header card-header-success">
+								<h4 class="card-title ">Locação</h4>
+
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class=" text-success">
+											<th>Locatário</th>
+											<th>Exemplar</th>
+											<th>Dias restantes</th>
+											
+											<th class="text-right"><a href="/locacao/cadastro"><button type="button" rel="tooltip" title="Novo"
+															class="btn btn-success btn-sm">
+															<i class="material-icons" style="font-size:35px;">add</i>
+														</button></a></th>
+										</thead>
+										<tbody>
+											<tr data-th-each="loca : ${locacao}">
+												<td data-th-text="${loca.cliente}"></td>
+												<td data-th-text="${loca.exemplar}"></td>
+												<td data-th-text="${loca.dias}"></td>
+												<td class="td-actions text-center">
+														<a th:href="@{'/locacao/excluir/' + ${loca.id}}"><button type="button" rel="tooltip" title="Exluir"
+															class="btn btn-danger btn-link btn-sm">
+															<i class="material-icons">close</i>
+														</button></a></td>
+
+											
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<div th:replace="rodape/rodape.html :: footer"></div>
+		<script th:src="@{scripts/header.js}"></script>
+</body>
+</html>
