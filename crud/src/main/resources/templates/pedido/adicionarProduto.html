@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head th:replace="header/head.html :: head">
@@ -12,7 +13,7 @@
 			class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
 			<div class="container-fluid">
 				<div class="navbar-wrapper">
-					<a class="navbar-brand">Usuários</a>
+					<a class="navbar-brand">Pedidos</a>
 				</div>
 			</div>
 
@@ -22,44 +23,75 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card">
-							<div class="card-header card-header-danger">
-								<h4 class="card-title">Cadastro de Usuários</h4>
+							<div class="card-header card-header-info">
+								<h4 class="card-title">Cadastro de Pedidos</h4>
 
 							</div>
 							<div class="card-body">
-								<form th:action="@{/clientes/salvar}" method="POST">
+								<form th:action="@{/pedido/salvar}" method="POST">
 									<div class="row">
+										<div class="col-md-6  pt-2">
+											<div class="form-group">
+												<label class="">Descrição</label> <input type="text"
+													id="descricao" class="form-control" name="descrição">
+											</div>
+										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Nome Completo</label> <input
-													type="text" class="form-control" name="nome" required
+												<select name="produto" class="form-control" required
 													autofocus>
+													<option value="">Selecione os Produtos</option>
+													<option data-th-each="produto : ${produtos}"
+														th:value="${produto.nome}" th:text="${produto.nome}"
+														selected="selected"></option>
+												</select>
+
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-3">
 											<div class="form-group">
-												<label class="bmd-label-floating">Endereço</label> <input
-													type="text" class="form-control" name="endereco" required>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="bmd-label-floating">CPF</label> <input
-													type="number" id="cpf" class="form-control cpf" name="cpf"
+												<label>Quantidade</label> <input type="number"
+													id="quantidade" class="form-control" name="quantidade"
 													required>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-3">
 											<div class="form-group">
-												<label class="bmd-label-floating">Telefone</label> <input
-													type="number" id="telefone"
-													class="form-control phone_with_ddd" name="telefone"
-													required>
+												<label><i class="material-icons"></i>Data da Pedido</label>
+												<input type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+													class="form-control" name="data" required>
 											</div>
 										</div>
 									</div>
-
-									<button type="submit" class="btn btn-danger pull-right">Salvar</button>
+									<button type="button" rel="tooltip" title="Adicionar"
+										class="btn btn-info btn-sm">
+										<i class="material-icons" style="font-size: 35px;">add</i>
+									</button>
+									
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table">
+												<thead class=" text-info">
+													<th>Produto</th>
+													<th>R$</th>
+												</thead>
+												<tbody>
+													<tr data-th-each="pedido : ${pedido}">
+														<td data-th-text="${pedido.id}"></td>
+														<td class="td-actions text-center"><a
+															th:href="@{'/pedido/excluir/' + ${pedido.id}}"><button
+																	type="button" rel="tooltip" title="Exluir"
+																	class="btn btn-danger btn-link btn-sm">
+																	<i class="material-icons">close</i>
+																</button></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<button type="submit" class="btn btn-success pull-right">
+										Salvar <i class="material-icons">done</i>
+									</button>
 									<div class="clearfix"></div>
 								</form>
 							</div>
@@ -69,15 +101,13 @@
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-<div th:replace="rodape/rodape.html :: footer"></div>
-
+		<div th:replace="rodape/rodape.html :: footer"></div>
 	</div>
-	
+
+
+
+
+
 
 
 
@@ -125,7 +155,7 @@
 		$('.cnpj').mask('00.000.000/0000-00', {
 			reverse : true
 		});
-		$('.money').mask('000.00', {
+		$('.money').mask('000.000.00', {
 			reverse : true
 		});
 		$('.money2').mask("#.##0,00", {
@@ -493,3 +523,8 @@
 	});
 </script>
 </html>
+
+
+
+
+

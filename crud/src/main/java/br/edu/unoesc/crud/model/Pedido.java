@@ -17,20 +17,22 @@ public class Pedido implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String descricao;
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Produto> produto;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Usuario> usuario;
 	private long quantidade;
 	private String data;
 	
 	public Pedido() {
 	}
 
-	public Pedido(long id, String descricao, List<Produto> produto, long quantidade, String data) {
+	public Pedido(long id, List<Produto> produto, List<Usuario> usuario, long quantidade, String data) {
 		super();
 		this.id = id;
-		this.descricao = descricao;
 		this.produto = produto;
+		this.usuario = usuario;
 		this.quantidade = quantidade;
 		this.data = data;
 	}
@@ -43,20 +45,20 @@ public class Pedido implements Serializable{
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public List<Produto> getProduto() {
 		return produto;
 	}
 
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
+	}
+
+	public List<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 	public long getQuantidade() {
@@ -79,6 +81,5 @@ public class Pedido implements Serializable{
 		return serialVersionUID;
 	}
 
-	
 	
 }
