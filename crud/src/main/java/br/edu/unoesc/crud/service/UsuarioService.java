@@ -11,23 +11,36 @@ import br.edu.unoesc.crud.model.Usuario;
 
 @Service
 public class UsuarioService {
-	
+
 	@Autowired
 	UsuarioRepository usuarioRepository;
-	
+
 	public void salvar(Usuario usuario) {
 		List<Roles> roles = new ArrayList<Roles>();
-		roles.add(Roles.USER);
-		usuario.setRoles(roles);
-		usuario.criptografarSenha();
-		usuarioRepository.saveAndFlush(usuario);
+		for (int i = 0; i < roles.size(); i++) {
+			if (i > 0) {
+				roles.add(Roles.USER);
+				usuario.setRoles(roles);
+				usuario.criptografarSenha();
+				usuarioRepository.saveAndFlush(usuario);
+
+			} else {
+				roles.add(Roles.ADMIN);
+				usuario.setRoles(roles);
+				usuario.criptografarSenha();
+				usuarioRepository.saveAndFlush(usuario);
+
+			}
+
+		}
+
 	}
-	
+
 	public void excluir(Long id, Usuario usuario) {
 		List<Roles> roles = new ArrayList<Roles>(usuario.getRoles());
 		roles.clear();
 		usuario.setRoles(roles);
 		usuarioRepository.deleteById(id);
 	}
-	
+
 }

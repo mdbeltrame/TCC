@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-<head th:replace="header/head.html :: head"><meta charset="UTF-8"/></head>
+<head th:replace="header/head.html :: head">
+<meta charset="UTF-8" />
+</head>
 <body>
 	<div th:replace="header/navbar.html :: div"></div>
 	<div class="main-panel">
-	
+
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
@@ -12,7 +14,7 @@
 						<div class="card">
 							<div class="card-header card-header-danger">
 								<h4 class="card-title ">Produtos</h4>
-								
+
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -21,33 +23,33 @@
 											<th>Nome Produto</th>
 											<th>Grupo</th>
 											<th>Unidade</th>
-											<th>Quantidade</th>
 											<th>R$</th>
-											<th class="text-right"><a href="/produto/cadastro"><button type="button" rel="tooltip" title="Novo"
-															class="btn btn-danger btn-sm">
-															<i class="material-icons" style="font-size:35px;">add</i>
-														</button></a>
-											</th>
+											<th class="text-right"><a href="/produto/cadastro"><button
+														type="button" rel="tooltip" title="Novo"
+														class="btn btn-danger btn-sm">
+														<i class="material-icons" style="font-size: 35px;">add</i>
+													</button></a></th>
 										</thead>
 										<tbody>
 											<tr data-th-each="produto : ${produto}">
 												<td data-th-text="${produto.nome}"></td>
 												<td data-th-text="${produto.grupo}"></td>
 												<td data-th-text="${produto.unidade}"></td>
-												<td data-th-text="${produto.quantidade}"></td>
 												<td data-th-text="${produto.valor}"></td>
-												<td class="td-actions text-center"><a th:href="@{'/produto/editar/' + ${produto.id}}"><button type="button" rel="tooltip" title="Editar"
+												<td class="td-actions text-center"><a
+													th:href="@{'/produto/editar/' + ${produto.id}}"><button
+															type="button" rel="tooltip" title="Editar"
 															class="btn btn-info btn-link btn-sm">
 															<i class="material-icons">edit</i>
-														</button></a> 
-														<a th:href="@{'/produto/excluir/' + ${produto.id}}"><button type="button" rel="tooltip" title="Exluir"
+														</button></a> <a th:href="@{'/produto/excluir/' + ${produto.id}}"><button
+															type="button" rel="tooltip" title="Exluir"
 															class="btn btn-danger btn-link btn-sm">
 															<i class="material-icons">close</i>
 														</button></a></td>
-													
+
 
 											</tr>
-											
+
 
 										</tbody>
 									</table>
@@ -57,9 +59,10 @@
 					</div>
 				</div>
 			</div>
-		</div>]
+		</div>
+		]
 		<div th:replace="rodape/rodape.html :: footer"></div>
-</div>		
+	</div>
 </body>
 <script th:src="@{/scripts/core/jquery.min.js}"></script>
 <script th:src="@{/scripts/jquery.mask.js}" type="text/javascript"></script>
