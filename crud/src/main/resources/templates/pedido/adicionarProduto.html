@@ -30,24 +30,20 @@
 							<div class="card-body">
 								<form th:action="@{/pedido/salvar}" method="POST">
 									<div class="row">
-										<div class="col-md-6  pt-2">
-											<div class="form-group">
-												<label class="">Descrição</label> <input type="text"
-													id="descricao" class="form-control" name="descrição">
-											</div>
-										</div>
+
 										<div class="col-md-6">
 											<div class="form-group">
 												<select name="produto" class="form-control" required
 													autofocus>
-													<option value="">Selecione os Produtos</option>
+													<option value="" selected="selected">Selecione os
+														Produtos</option>
 													<option data-th-each="produto : ${produtos}"
-														th:value="${produto.nome}" th:text="${produto.nome}"
-														selected="selected"></option>
+														th:value="${produto.nome}" th:text="${produto.nome}"></option>
 												</select>
 
 											</div>
 										</div>
+										<input type="hidden"  id="id" name="id">
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>Quantidade</label> <input type="number"
@@ -55,35 +51,42 @@
 													required>
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-6  pt-2">
 											<div class="form-group">
-												<label><i class="material-icons"></i>Data da Pedido</label>
-												<input type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-													class="form-control" name="data" required>
+												<label class="">Observação</label> <input type="text"
+													id="observacao" class="form-control" name="observacao">
 											</div>
 										</div>
 									</div>
-									<button type="button" rel="tooltip" title="Adicionar"
+									<button type="submit" rel="tooltip" title="Adicionar"
 										class="btn btn-info btn-sm">
 										<i class="material-icons" style="font-size: 35px;">add</i>
 									</button>
+
 									
-									<div class="card-body">
+									
+									<div class="clearfix"></div>
+								</form>
+								<div class="card-body">
 										<div class="table-responsive">
 											<table class="table">
 												<thead class=" text-info">
 													<th>Produto</th>
 													<th>R$</th>
+													<th>Observação
+													<th>
 												</thead>
 												<tbody>
 													<tr data-th-each="pedido : ${pedido}">
 														<td data-th-text="${pedido.id}"></td>
+														<td data-th-text="${pedido.observacao}"></td>
 														<td class="td-actions text-center"><a
 															th:href="@{'/pedido/excluir/' + ${pedido.id}}"><button
 																	type="button" rel="tooltip" title="Exluir"
 																	class="btn btn-danger btn-link btn-sm">
 																	<i class="material-icons">close</i>
 																</button></a></td>
+
 													</tr>
 												</tbody>
 											</table>
@@ -92,8 +95,6 @@
 									<button type="submit" class="btn btn-success pull-right">
 										Salvar <i class="material-icons">done</i>
 									</button>
-									<div class="clearfix"></div>
-								</form>
 							</div>
 						</div>
 					</div>

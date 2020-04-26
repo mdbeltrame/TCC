@@ -1,5 +1,7 @@
 package br.edu.unoesc.crud.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ public class PedidoService {
 	private PedidoRepository pedidoRepository;
 
 	public void salvar(Pedido pedido) {
+		pedido.setData(LocalDate.now().toString());
 		pedidoRepository.saveAndFlush(pedido);
 	}
 

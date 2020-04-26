@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Pedido implements Serializable{
+public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -24,17 +24,28 @@ public class Pedido implements Serializable{
 	private List<Usuario> usuario;
 	private long quantidade;
 	private String data;
-	
+	private String observacao;
+
 	public Pedido() {
 	}
 
-	public Pedido(long id, List<Produto> produto, List<Usuario> usuario, long quantidade, String data) {
+	public Pedido(long id, List<Produto> produto, List<Usuario> usuario, long quantidade, String data,
+			String observacao) {
 		super();
 		this.id = id;
 		this.produto = produto;
 		this.usuario = usuario;
 		this.quantidade = quantidade;
 		this.data = data;
+		this.observacao = observacao;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public long getId() {
@@ -81,5 +92,4 @@ public class Pedido implements Serializable{
 		return serialVersionUID;
 	}
 
-	
 }

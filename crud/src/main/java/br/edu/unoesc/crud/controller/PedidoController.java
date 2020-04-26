@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.edu.unoesc.crud.Repository.PedidoRepository;
+import br.edu.unoesc.crud.Repository.ProdutoRepository;
 import br.edu.unoesc.crud.model.Pedido;
 import br.edu.unoesc.crud.service.PedidoService;
-
 
 @RequestMapping("/pedido")
 @Controller
@@ -22,12 +22,23 @@ public class PedidoController {
 	@Autowired
 	private PedidoService pedidoService;
 	@Autowired
+	private ProdutoRepository produtoRepository;
+	@Autowired
 	private PedidoRepository pedidoRepository;
 
 	// Carregar a pagina de cadastro de pedido
-	@RequestMapping(path = { "/cadastro", "/", "" })
-	public String cadastro() {
-		return "pedido/cadastro";
+	@RequestMapping(path = { "/cadastro" })
+	public String cadastro(Model model) {
+		model.addAttribute("produtos", produtoRepository.findAll());
+		return "pedido/adicionarProduto";
+	}
+	
+	// Carregar a pagina de cadastro de pedido
+	@RequestMapping(path = { "/cadastro/{pedido.id}" })
+	public String adicionar(Model model, Pedido pedido) {
+		model.addAttribute("produtos", produtoRepository.findAll());
+		model.addAttribute("pedido", pedidoRepository.findById(pedido.getId()));
+		return "pedido/adicionarProduto";
 	}
 
 	@GetMapping("/listar")
@@ -37,12 +48,13 @@ public class PedidoController {
 	}
 
 	// Metodo para salvar o pedido, chama esse no botao "salvar" e redireciona pra
-		// tela de listagem
+	// tela de listagem
 	@RequestMapping(path = "/salvar", method = RequestMethod.POST)
 	public String salvar(Pedido pedido, Model model) {
 		pedidoService.salvar(pedido);
 		model.addAttribute("pedido", pedidoRepository.findAll());
-		return "pedido/listar";
+
+		return "pedido/adicionarProduto";
 	}
 
 	// Metodo para excluir o pedido
@@ -64,6 +76,5 @@ public class PedidoController {
 		pedidoRepository.saveAndFlush(pedido);
 		return "redirect:/pedido/listar";
 	}
-	
-	
+
 }

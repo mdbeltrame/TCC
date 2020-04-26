@@ -1,6 +1,7 @@
 package br.edu.unoesc.crud.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +18,18 @@ public class UsuarioService {
 
 	public void salvar(Usuario usuario) {
 		List<Roles> roles = new ArrayList<Roles>();
-		for (int i = 0; i < roles.size(); i++) {
-			if (i > 0) {
-				roles.add(Roles.USER);
-				usuario.setRoles(roles);
-				usuario.criptografarSenha();
-				usuarioRepository.saveAndFlush(usuario);
-
-			} else {
-				roles.add(Roles.ADMIN);
-				usuario.setRoles(roles);
-				usuario.criptografarSenha();
-				usuarioRepository.saveAndFlush(usuario);
-
-			}
-
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		if (usuarios.isEmpty()) {
+			roles.add(Roles.ADMIN);
+			usuario.setRoles(roles);
+			usuario.criptografarSenha();
+			usuarioRepository.saveAndFlush(usuario);
+		} else {
+			roles.add(Roles.USER);
+			usuario.setRoles(roles);
+			usuario.criptografarSenha();
+			usuarioRepository.saveAndFlush(usuario);
 		}
-
 	}
 
 	public void excluir(Long id, Usuario usuario) {
