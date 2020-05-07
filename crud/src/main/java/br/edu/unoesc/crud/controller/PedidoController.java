@@ -1,5 +1,6 @@
 package br.edu.unoesc.crud.controller;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,6 @@ public class PedidoController {
 		pedidoRepository.saveAndFlush(pedido);
 		return "redirect:/pedido/listar";
 	}
+	
 
 }

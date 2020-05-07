@@ -1,162 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 
-
-<head th:replace="header/head.html :: head"><meta charset="UTF-8"/></head>
-
+<head th:replace="header/head.html :: head">
+<meta charset="UTF-8" />
+</head>
 <body>
-
-<div th:replace="header/navbar.html :: div"></div>
-
-		<div class="main-panel">
-			<nav
-				class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-				<div class="container-fluid">
-					<div class="navbar-wrapper">
-						
-					</div>
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						aria-controls="navigation-index" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="sr-only"></span> <span
-							class="navbar-toggler-icon icon-bar"></span> <span
-							class="navbar-toggler-icon icon-bar"></span> <span
-							class="navbar-toggler-icon icon-bar"></span>
-					</button>
-					
-				</div>
-				
-			</nav>
-			<!-- End Navbar -->
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header card-header-danger card-header-icon">
-									<div class="card-icon">
-										<i class="material-icons">view_carousel</i>
-									</div>
-									<p class="card-category">Comandas Realizadas</p>
-									<h3 class="card-title" th:text="${contalocacao}"></h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header card-header-danger card-header-icon">
-									<div class="card-icon">
-										<i class="material-icons">receipt</i>
-									</div>
-									<p class="card-category">Pedidos Abertos</p>
-									<h3 class="card-title" th:text="${contaLocatarios}"></h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header card-header-danger card-header-icon">
-									<div class="card-icon">
-										<i class="material-icons">receipt</i>
-									</div>
-									<p class="card-category">Pedidos Abertos</p>
-									<h3 class="card-title" th:text="${contaLocatarios}"></h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
+	<div th:replace="header/navbar.html :: div"></div>
+	<div class="main-panel">
+		<nav
+			class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+			<div class="container-fluid">
+				<div class="navbar-wrapper"></div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					aria-controls="navigation-index" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="sr-only"></span> <span
+						class="navbar-toggler-icon icon-bar"></span> <span
+						class="navbar-toggler-icon icon-bar"></span> <span
+						class="navbar-toggler-icon icon-bar"></span>
+				</button>
+			</div>
+		</nav>
 		<div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-info">
-                  <h4 class="card-title ">Lançamentos</h4>
-                  
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-info">
-                        <th>
-                          Nome
-                        </th>
-                        <th>
-                          Autor
-                        </th>
-                        <th>
-                          Ano
-                        </th>
-                        <th>
-                          Categoria 
-                        </th>
-                      </thead>
-                      <tbody>
-                        <tr data-th-each="exemplares : ${exemplares}">
-                          <td data-th-text="${exemplares.nome}">
-                          </td>
-                          <td data-th-text="${exemplares.autor}">
-                          </td>
-                          <td data-th-text="${exemplares.ano}">
-                          </td>
-                          <td data-th-text="${exemplares.categoria}">
-                          </td>
-                        </tr>
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-
-
-
-					<div th:replace="rodape/rodape.html :: footer"></div>
-					
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="card card-stats">
+							<div class="card-header card-header-danger card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">account_circle</i>
+								</div>
+								<p class="card-category">Usuários Ativos</p>
+								<h3 class="card-title" th:text="${contausuario}"></h3>
+							</div>
+							<div class="card-footer">
+								<div class="stats"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="card card-stats">
+							<div class="card-header card-header-danger card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">list_alt</i>
+								</div>
+								<p class="card-category">Pedidos Efetuados</p>
+								<h3 class="card-title" th:text="${contapedido}"></h3>
+							</div>
+							<div class="card-footer">
+								<div class="stats"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="card card-stats">
+							<div class="card-header card-header-danger card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">calendar_today</i>
+								</div>
+								
+								<h3 class="card-title" th:text="${contaLocatarios}"></h3>
+							</div>
+							<div class="card-footer">
+								<div class="stats"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-
-			
-			<script th:src="@{scripts/core/jquery.min.js}"></script>
-			<script th:src="@{scripts/core/popper.min.js}"></script>
-			<script th:src="@{scripts/core/bootstrap-material-design.min.js}"></script>
-			<script th:src="@{scripts/plugins/perfect-scrollbar.jquery.min.js}"></script>
-			<script th:src="@{scripts/plugins/moment.min.js}"></script>
-			<script th:src="@{scripts//plugins/sweetalert2.js}"></script>
-			<script th:src="@{scripts/plugins/jquery.validate.min.js}"></script>
-			<script th:src="@{scripts/plugins/jquery.bootstrap-wizard.js}"></script>
-			<script th:src="@{scripts/plugins/bootstrap-selectpicker.js}"></script>
-			<script th:src="@{scripts/plugins/bootstrap-datetimepicker.min.js}"></script>
-			<script th:src="@{scripts/plugins/jquery.dataTables.min.js}"></script>
-			<script th:src="@{scripts/plugins/bootstrap-tagsinput.js}"></script>
-			<script th:src="@{scripts/plugins/jasny-bootstrap.min.js}"></script>
-			<script th:src="@{scripts/plugins/fullcalendar.min.js}"></script>
-			<script th:src="@{scripts/plugins/jquery-jvectormap.js}"></script>
-			<script th:src="@{scripts/plugins/nouislider.min.js}"></script>
-			<script	th:src="@{https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js}"></script>
-			<script th:src="@{scripts/plugins/arrive.min.js}"></script>
-			<script th:src="@{scripts/plugins/chartist.min.js}"></script>
-			<script th:src="@{scripts/plugins/bootstrap-notify.js}"></script>
-			<script th:src="@{scripts/material-dashboard.js?v=2.1.1}" type="text/javascript"></script>
-			
+		</div>
+		<div th:replace="rodape/rodape.html :: footer"></div>
+	</div>
+	<script th:src="@{scripts/core/jquery.min.js}"></script>
+	<script th:src="@{scripts/core/popper.min.js}"></script>
+	<script th:src="@{scripts/core/bootstrap-material-design.min.js}"></script>
+	<script th:src="@{scripts/plugins/perfect-scrollbar.jquery.min.js}"></script>
+	<script th:src="@{scripts/plugins/moment.min.js}"></script>
+	<script th:src="@{scripts//plugins/sweetalert2.js}"></script>
+	<script th:src="@{scripts/plugins/jquery.validate.min.js}"></script>
+	<script th:src="@{scripts/plugins/jquery.bootstrap-wizard.js}"></script>
+	<script th:src="@{scripts/plugins/bootstrap-selectpicker.js}"></script>
+	<script th:src="@{scripts/plugins/bootstrap-datetimepicker.min.js}"></script>
+	<script th:src="@{scripts/plugins/jquery.dataTables.min.js}"></script>
+	<script th:src="@{scripts/plugins/bootstrap-tagsinput.js}"></script>
+	<script th:src="@{scripts/plugins/jasny-bootstrap.min.js}"></script>
+	<script th:src="@{scripts/plugins/fullcalendar.min.js}"></script>
+	<script th:src="@{scripts/plugins/jquery-jvectormap.js}"></script>
+	<script th:src="@{scripts/plugins/nouislider.min.js}"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js}"></script>
+	<script th:src="@{scripts/plugins/arrive.min.js}"></script>
+	<script th:src="@{scripts/plugins/chartist.min.js}"></script>
+	<script th:src="@{scripts/plugins/bootstrap-notify.js}"></script>
+	<script th:src="@{scripts/material-dashboard.js?v=2.1.1}"type="text/javascript"></script>
 </body>
 </html>
