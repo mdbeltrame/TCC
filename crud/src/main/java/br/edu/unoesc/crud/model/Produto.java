@@ -10,11 +10,11 @@ import javax.persistence.Id;
 @Entity
 public class Produto implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3551807732793271709L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
+	private Long id;
 
 	private String nome;
 
@@ -28,7 +28,7 @@ public class Produto implements Serializable {
 
 	}
 
-	public Produto(long id, String nome, String grupo, String unidade, String valor) {
+	public Produto(Long id, String nome, String grupo, String unidade, String valor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -38,11 +38,11 @@ public class Produto implements Serializable {
 		this.valor = valor;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

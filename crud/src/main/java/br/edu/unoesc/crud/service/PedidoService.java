@@ -21,6 +21,7 @@ public class PedidoService {
 	}
 
 	public void excluir(Long id, Pedido pedido) {
+		pedido.setProduto(null);
 		pedidoRepository.deleteById(id);
 	}
 }

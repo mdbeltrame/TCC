@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: crud
+Bundle-SymbolicName: crud
+Bundle-Version: 1.0.0.qualifier
+Export-Package: br.edu.unoesc.crud,
+ br.edu.unoesc.crud.Repository,
+ br.edu.unoesc.crud.controller,
+ br.edu.unoesc.crud.model,
+ br.edu.unoesc.crud.security,
+ br.edu.unoesc.crud.service

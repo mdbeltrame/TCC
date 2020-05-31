@@ -16,12 +16,12 @@
 								<h4 class="card-title ">Pedidos</h4>
 
 							</div>
+							<h4 class="card-title" align="right"><a class="nav-link" href="/index">Voltar</a></h4>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-info">
 											<th>Codigo Pedido</th>
-											<th>Descrição</th>
 											<th>R$</th>
 											<th>Data do Pedido</th>
 											<th class="text-right"><a href="/pedido/cadastro"><button
@@ -33,7 +33,6 @@
 										<tbody>
 											<tr data-th-each="pedido : ${pedido}">
 												<td data-th-text="${pedido.id}"></td>
-												<td data-th-text="${pedido.descricao}"></td>
 												<td data-th-text="${pedido.data}"></td>
 												<td class="td-actions text-center"><a
 													th:href="@{'/pedido/editar/' + ${pedido.id}}"><button

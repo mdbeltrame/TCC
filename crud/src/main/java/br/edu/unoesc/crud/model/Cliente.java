@@ -21,14 +21,6 @@ public class Cliente {
 	private String endereco;
 	private String telefone;
 
-	public List<Usuario> getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
-	}
-
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -82,6 +74,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public List<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 }

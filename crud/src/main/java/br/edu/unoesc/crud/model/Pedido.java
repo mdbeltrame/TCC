@@ -1,10 +1,12 @@
 package br.edu.unoesc.crud.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,23 +15,35 @@ import javax.persistence.OneToMany;
 @Entity
 public class Pedido implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2441171712296281534L;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedido")
+	private Long id;
+
+	@OneToMany(cascade = {CascadeType.ALL, CascadeType.MERGE}, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Produto> produto;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Usuario> usuario;
 	private long quantidade;
 	private String data;
 	private String observacao;
-
+	
+	public void addProduto(Produto p) {
+		if (produto == null) {
+			produto = new ArrayList<Produto>();
+		}
+		produto.add(p);
+	}
+	
 	public Pedido() {
 	}
 
-	public Pedido(long id, List<Produto> produto, List<Usuario> usuario, long quantidade, String data,
+	public Pedido(Long id, List<Produto> produto, List<Usuario> usuario, long quantidade, String data,
 			String observacao) {
 		super();
 		this.id = id;
@@ -48,11 +62,11 @@ public class Pedido implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

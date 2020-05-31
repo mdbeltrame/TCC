@@ -1,51 +1,52 @@
-	
-	
-	<head th:replace="header/head.html :: head"><meta charset="UTF-8"/></head>
-	
-		<div class="sidebar" data-color="grey" data-background-color="grey">
 
-			<div class="logo">
-				<a class="simple-text logo-normal"><i class="material-icons mr-2">receipt</i>Comanda Virtual </a>
+
+<head th:replace="header/head.html :: head">
+<meta charset="UTF-8" />
+</head>
+
+<div class="sidebar" data-color="grey" data-background-color="grey">
+
+	<div class="logo">
+		<a class="simple-text logo-normal"><i class="material-icons mr-2">receipt</i>Comanda
+			Virtual </a>
+	</div>
+	<div class="sidebar-wrapper">
+		<ul class="nav">
+			<li class="nav-item active  "><a class="nav-link" href="/index">
+					<i class="material-icons">dashboard</i>
+					<p>Inicio</p>
+			</a></li>
+
+			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				<a class="dropdown-item" href="#"></a> <a class="dropdown-item"
+					href="#"></a> <a class="dropdown-item" href="#"></a>
 			</div>
-			<div class="sidebar-wrapper">
-				<ul class="nav">
-					<li class="nav-item active  "><a class="nav-link"
-						href="/index"> <i class="material-icons">dashboard</i>
-							<p>Inicio</p>
-					</a></li>
-					
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Ação</a>
-          <a class="dropdown-item" href="#">Outra ação</a>
-          <a class="dropdown-item" href="#">Algo mais aqui</a>
-        </div>
-					
-					
-					<li sec:authorize="hasRole('ADMIN')" class="nav-item "><a class="nav-link" href="/clientes/listar">
-							<i class="material-icons">person</i>
-							<p>Usuários</p>
-					</a></li>
-					<li sec:authorize="hasRole('ADMIN')" class="nav-item "><a class="nav-link" href="/produto/listar">
-							<i class="material-icons">dns</i>
-							<p>Produtos</p>
-					</a></li>
-					<li  class="nav-item "><a class="nav-link"
-						href="/pedido/listar"> <i class="material-icons">library_books</i>
-							<p>Pedidos</p>
-					</a></li>
-					<!-- <li sec:authorize="hasRole('ADMIN')" class="nav-item "><a class="nav-link" href="/locacao/listar">
-							<i class="material-icons">content_copy</i>
-							<p>Locação</p>
-					</a></li> -->
-					<li class="nav-item "><a class="nav-link" href="/logout">
-							<i class="material-icons">power_settings_new</i><p>Sair</p>
-					</a></li>
+
+
+			<li sec:authorize="hasRole('ADMIN')" class="nav-item "><a
+				class="nav-link" href="/clientes/listar"> <i
+					class="material-icons">person</i>
+					<p>Usuários</p>
+			</a></li>
+			<li sec:authorize="hasRole('ADMIN')" class="nav-item "><a
+				class="nav-link" href="/produto/listar"> <i
+					class="material-icons">dns</i>
+					<p>Produtos</p>
+			</a></li>
+			<li class="nav-item "><a class="nav-link" href="/pedido/listar">
+					<i class="material-icons">library_books</i>
+					<p>Pedidos</p>
+			</a></li>
+			<li class="nav-item "><a class="nav-link" href="/logout"> <i
+					class="material-icons">power_settings_new</i>
+				<p>Sair</p>
+			</a></li>
 
 
 
-				</ul>
-			</div>
-		</div>
-	
-		
+		</ul>
+	</div>
+</div>
+
+
 
