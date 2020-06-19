@@ -31,7 +31,7 @@
 							<div class="card-body">
 								<form th:action="@{/pedido/salvar}" method="POST">
 									<div class="row">
-
+										
 										<div class="col-md-6">
 											<div class="form-group">
 												<select name="produto" class="form-control" required
@@ -39,7 +39,7 @@
 													<option value="" selected="selected">Selecione os
 														Produtos</option>
 													<option data-th-each="produto : ${produtos}"
-														th:value="${produto.id}" th:text="${produto.nome}"></option>
+														th:value="${produto.idProduto}" th:text="${produto.nome}"></option>
 												</select>
 
 											</div>
@@ -95,7 +95,7 @@
 										</table>
 									</div>
 								</div>
-								<button type="submit" class="btn btn-success pull-right">
+								<button class="btn btn-success pull-right"><a class="text-light" href="/pedido/listar">
 									Salvar <i class="material-icons">done</i>
 								</button>
 							</div>

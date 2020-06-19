@@ -16,7 +16,7 @@
 								<h4 class="card-title ">Produtos</h4>
 
 							</div>
-							<h4 class="card-title" align="right"><a class="nav-link" href="/index">Voltar</a></h4>
+							<h4 class="card-title" align="right"><a class="nav-link text-dark" href="/index">Voltar</a></h4>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table">
@@ -38,11 +38,11 @@
 												<td data-th-text="${produto.unidade}"></td>
 												<td data-th-text="${produto.valor}"></td>
 												<td class="td-actions text-center"><a
-													th:href="@{'/produto/editar/' + ${produto.id}}"><button
+													th:href="@{'/produto/editar/' + ${produto.idProduto}}"><button
 															type="button" rel="tooltip" title="Editar"
 															class="btn btn-info btn-link btn-sm">
 															<i class="material-icons">edit</i>
-														</button></a> <a th:href="@{'/produto/excluir/' + ${produto.id}}"><button
+														</button></a> <a th:href="@{'/produto/excluir/' + ${produto.idProduto}}"><button
 															type="button" rel="tooltip" title="Exluir"
 															class="btn btn-danger btn-link btn-sm">
 															<i class="material-icons">close</i>

@@ -1,50 +1,63 @@
 package br.edu.unoesc.crud.model;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Pedido implements Serializable {
-
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2441171712296281534L;
+public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedido")
 	private Long id;
 
-	@OneToMany(cascade = {CascadeType.ALL, CascadeType.MERGE}, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany
+	@JoinTable(name = "pedido_produto",  joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
 	private List<Produto> produto;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Usuario> usuario;
-	private long quantidade;
+	private Integer quantidade;
 	private String data;
 	private String observacao;
+	private BigDecimal valorTotal;
 	
 	public void addProduto(Produto p) {
-		if (produto == null) {
+		if (this.produto == null) {
 			produto = new ArrayList<Produto>();
 		}
 		produto.add(p);
 	}
 	
+	public void removeProduto(Produto p) {
+		if (this.produto != null && !this.produto.isEmpty()) {
+			this.produto.remove(p);
+		}
+	}
+	
 	public Pedido() {
+		super();
+
+	}
+	
+	public void calculaValorTotal() {
+		if (this.produto != null && !this.produto.isEmpty()) {
+			for (Produto p : produto) {
+				this.valorTotal = getValorTotal().add(p.getValor());
+			}
+		}
 	}
 
-	public Pedido(Long id, List<Produto> produto, List<Usuario> usuario, long quantidade, String data,
-			String observacao) {
+	public Pedido(Long id, List<Produto> produto, List<Usuario> usuario, Integer quantidade, String data,
+			String observacao, BigDecimal valorTotal) {
 		super();
 		this.id = id;
 		this.produto = produto;
@@ -52,8 +65,29 @@ public class Pedido implements Serializable {
 		this.quantidade = quantidade;
 		this.data = data;
 		this.observacao = observacao;
+		this.valorTotal = valorTotal;
 	}
 
+	public Pedido(List<Produto> produto, List<Usuario> usuario, Integer quantidade, String data,
+			String observacao, BigDecimal valorTotal) {
+		super();
+		this.produto = produto;
+		this.usuario = usuario;
+		this.quantidade = quantidade;
+		this.data = data;
+		this.observacao = observacao;
+		this.valorTotal = valorTotal;
+	}
+	
+	public BigDecimal getValorTotal() {
+		return valorTotal != null ? valorTotal : BigDecimal.ZERO;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	
 	public String getObservacao() {
 		return observacao;
 	}
@@ -86,11 +120,11 @@ public class Pedido implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public long getQuantidade() {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(long quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -101,9 +135,4 @@ public class Pedido implements Serializable {
 	public void setData(String data) {
 		this.data = data;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }

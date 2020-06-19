@@ -31,7 +31,7 @@
 							<div class="card-body">
 								<form th:action="@{/pedido/salvar}" method="POST">
 									<div class="row">
-		<input hidden="hidden" th:value="${pedido.id}"></input>
+										<input hidden="hidden" name="id" id="pedido.id" th:value="${pedido.id}"></input>
 										<div class="col-md-6">
 											<div class="form-group">
 												<select name="produto" class="form-control" required
@@ -39,7 +39,7 @@
 													<option value="" selected="selected">Selecione os
 														Produtos</option>
 													<option data-th-each="produto : ${produtos}"
-														th:value="${produto.id}" th:text="${produto.nome}"></option>
+														th:value="${produto.idProduto}" th:text="${produto.nome}"></option>
 												</select>
 
 											</div>
@@ -48,14 +48,14 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>Quantidade</label> <input type="number"
-													id="quantidade" class="form-control" name="quantidade"
+													id="pedido.quantidade" class="form-control" name="quantidade"
 													required>
 											</div>
 										</div>
 										<div class="col-md-6  pt-2">
 											<div class="form-group">
 												<label class="">Observação</label> <input type="text"
-													id="observacao" class="form-control" name="observacao">
+													id="pedido.observacao" class="form-control" name="observacao">
 											</div>
 										</div>
 									</div>
@@ -74,23 +74,24 @@
 											<thead class=" text-info">
 												<th>Produto</th>
 												<th>QTD
-												<th>R$</th>
 												<th>Observação
 												<th>
 											</thead>
 											<tbody>
 												<tr data-th-each="produto : ${pedido.produto}">
+													<td hidden="hidden" data-th-text="${produto.idProduto}"></td>
 													<td data-th-text="${produto.nome}"></td>
 													<td data-th-text="${pedido.quantidade}"></td>
 													<td data-th-text="${pedido.observacao}"></td>
 													<td class="td-actions text-center"><a
-														th:href="@{'/pedido/excluir/' + ${pedido.id}}"><button
-																type="button" rel="tooltip" title="Exluir"
+														th:href="@{'/pedido/excluirProduto/' + ${pedido.id} + '/' + ${produto.idProduto}}"><button
+																type="button" rel="tooltip" title="Excluir"
 																class="btn btn-danger btn-link btn-sm">
 																<i class="material-icons">close</i>
 															</button></a></td>
 
 												</tr>
+												<tr style="float: right;" data-th-text="${pedido.valorTotal}">Valor Total: </tr>
 											</tbody>
 										</table>
 									</div>

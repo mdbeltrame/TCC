@@ -1,6 +1,7 @@
 package br.edu.unoesc.crud.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ public class Produto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
-	private Long id;
+	private Long idProduto;
 
 	private String nome;
 
@@ -22,28 +23,27 @@ public class Produto implements Serializable {
 
 	private String unidade;
 
-	private String valor;
+	private BigDecimal valor;
 
 	public Produto() {
 
 	}
 
-	public Produto(Long id, String nome, String grupo, String unidade, String valor) {
+	public Produto(Long idProduto, String nome, String grupo, String unidade, BigDecimal valor) {
 		super();
-		this.id = id;
+		this.idProduto = idProduto;
 		this.nome = nome;
 		this.grupo = grupo;
 		this.unidade = unidade;
-
 		this.valor = valor;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdProduto() {
+		return idProduto;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
 	public String getNome() {
@@ -70,11 +70,11 @@ public class Produto implements Serializable {
 		this.unidade = unidade;
 	}
 
-	public String getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

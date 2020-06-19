@@ -30,14 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-				.antMatchers("/index", "/", "/bootstrap/**", "/css/**",
+				.antMatchers("/index", "/bootstrap/**", "/css/**",
 						"/images/**", "/scripts/**", "/scss/**", "/demo/**", "/login**", "/usuarios/**", "/produto/**", "/pedido/**")
 				.permitAll().antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").permitAll();
 		
 		
 		
-		http.authorizeRequests().antMatchers("/index", "/", "/bootstrap/**", "/css/**",
+		http.authorizeRequests().antMatchers("/index", "/bootstrap/**", "/css/**",
 				"/images/**", "/scripts/**", "/scss/**", "/demo/**", "/login**","/pedido/**")
 		.permitAll().antMatchers("/admin/**").hasRole("USER").anyRequest().authenticated().and().formLogin()
 		.loginPage("/login").permitAll();
